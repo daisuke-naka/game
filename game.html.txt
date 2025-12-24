@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>数字当てゲーム</title>
+
+<style>
+body {
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  text-align: center;
+  padding: 30px;
+}
+input {
+  font-size: 24px;
+  width: 120px;
+  text-align: center;
+}
+button {
+  font-size: 20px;
+  margin-top: 10px;
+}
+#message {
+  margin-top: 20px;
+  font-size: 18px;
+}
+</style>
+</head>
+
+<body>
+
+<h2 id="hint">ヒント：最初の数字は「1」</h2>
+
+<input type="number" id="answer" maxlength="4" placeholder="4桁">
+<br>
+<button onclick="checkAnswer()">決定</button>
+
+<div id="message"></div>
+
+<script>
+let stage = 1;
+
+function checkAnswer() {
+  const input = document.getElementById("answer").value;
+  const message = document.getElementById("message");
+  const hint = document.getElementById("hint");
+
+  if (stage === 1 && input === "1234") {
+    stage = 2;
+    hint.textContent = "ヒント：足すと「10」になる";
+    message.textContent = "正解！次へ進みます";
+    document.getElementById("answer").value = "";
+  }
+  else if (stage === 2 && input === "2350") {
+    stage = 3;
+    hint.textContent = "🎉クリア！最後の答えは扉の中🎉";
+    message.textContent = "全問正解！";
+    document.getElementById("answer").style.display = "none";
+  }
+  else {
+    message.textContent = "違います…";
+  }
+}
+</script>
+
+</body>
+</html>
